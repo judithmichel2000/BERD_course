@@ -1,7 +1,10 @@
+# Load the tidyverse package
 library(tidyverse)
+
+# Read in the CSV file
 south_asia <- read_csv(file = "sadata.csv")
 
-# Simple plot
+# Simple plot (line diagram)
 ggplot(data = south_asia, aes(x = date, y = life_exp, color = country)) +
   geom_line()
 
@@ -10,6 +13,7 @@ south_asia_labels <- south_asia %>%
   group_by(country) %>%
   filter(date == max(date))  # Get the latest year for each country
 
+# Create a line plot
 ggplot(data = south_asia, aes(x = date, y = life_exp, color = country)) +
   geom_line() +
   geom_text(data = south_asia_labels, aes(label = country), hjust = -0.1, size = 4) +
